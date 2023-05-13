@@ -21,19 +21,19 @@
     <script src="app.js" defer></script>
   </head>
   <body>
-    <div class="container-fluid bg-success vh-100">
+    <div class="container-fluid bg-success min-vh-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div
-          class="col-lg-4 col-md-6 col-12  my-5 d-flex flex-column justify-content-center align-items-center"
+          class="col-lg-4 col-md-6 col-12 d-flex flex-column justify-content-center align-items-center"
         >
           <h1 class="text-light">Card Generator</h1>
-          <div class="bg-light card">
-            <div id="card" class="cardbody"></div>
+          <div class="bg-light card w-100 p-3 my-2">
+            <div id="card" class="cardbody d-flex flex-column"></div>
           </div>
-          <button class="btn bg-light w-75 my-2" id="get-card">
+          <button class="btn bg-light w-100 my-2" id="get-card">
             Get new card
           </button>
-          <button class="btn bg-light w-75 my-2" id="shuffle-card">
+          <button class="btn bg-light w-100 my-2" id="shuffle-card">
             Shuffle the deck!
           </button>
         </div>

@@ -43,17 +43,25 @@ const renderCard = cardsDeck => {
 
   const suitElement = document.createElement("p");
   suitElement.textContent = `${suit}`;
+  suitElement.className = "text-left h1 pb-5";
   card.append(suitElement);
 
   const valueElement = document.createElement("p");
   valueElement.textContent = `${value}`;
+  valueElement.className = "text-center h1 py-5";
   card.append(valueElement);
 
   const invertedSuitElement = document.createElement("p");
   invertedSuitElement.textContent = `${suit}`;
   invertedSuitElement.style.transform = "rotate(180deg)";
-
+  invertedSuitElement.className = "text-right h1 pt-5";
   card.append(invertedSuitElement);
+
+  const colorSelect = suit => {
+    return suit === "♦" || suit === "♥" ? "red" : "black";
+  };
+
+  card.style.color = colorSelect(suit);
 };
 
 window.onload = function() {
