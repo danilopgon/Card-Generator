@@ -1,4 +1,8 @@
 /* eslint-disable no-console */
+const getCardButton = document.getElementById("get-card");
+const shuffleCardButton = document.getElementById("shuffle-card");
+const title = document.querySelector("h1");
+
 const getDeck = () => {
   const cardSuits = ["♦", "♥", "♠", "♣"];
   const cardValues = [
@@ -17,13 +21,13 @@ const getDeck = () => {
     "A"
   ];
 
-  let newDeck = cardSuits.flatMap(suits => {
+  let generatedDeck = cardSuits.flatMap(suits => {
     return cardValues.flatMap(values => {
       return { value: values, suit: suits };
     });
   });
 
-  return newDeck;
+  return generatedDeck;
 };
 
 const shuffleCards = cardsDeck => {
@@ -38,34 +42,53 @@ const shuffleCards = cardsDeck => {
 };
 
 const renderCard = cardsDeck => {
-  const { suit, value } = cardsDeck[cardsDeck.length - 1];
   const card = document.getElementById("card");
-
   const suitElement = document.createElement("p");
-  suitElement.textContent = `${suit}`;
-  suitElement.className = "text-left h1 pb-4";
-  card.append(suitElement);
-
   const valueElement = document.createElement("p");
-  valueElement.textContent = `${value}`;
-  valueElement.className = "text-center h1 py-5";
-  card.append(valueElement);
-
   const invertedSuitElement = document.createElement("p");
-  invertedSuitElement.textContent = `${suit}`;
+
+  suitElement.className = "text-left h3 pb-4";
+  valueElement.className = "text-center h1 py-5";
+  invertedSuitElement.className = "text-right h3 pt-4";
   invertedSuitElement.style.transform = "rotate(180deg)";
-  invertedSuitElement.className = "text-right h1 pt-4";
+
+  card.innerHTML = "";
+
+  if (cardsDeck.length !== 0) {
+    title.textContent = "This is your card";
+    const { suit, value } = cardsDeck[cardsDeck.length - 1];
+    suitElement.textContent = suit;
+    valueElement.textContent = value;
+    invertedSuitElement.textContent = suit;
+    card.style.color = suit === "♦" || suit === "♥" ? "red" : "black";
+  } else {
+    title.textContent = "There're no cards left";
+    suitElement.textContent = "🤡";
+    valueElement.textContent = "🤡";
+    invertedSuitElement.textContent = "🤡";
+  }
+
+  card.append(suitElement);
+  card.append(valueElement);
   card.append(invertedSuitElement);
 
-  const colorSelect = suit => {
-    return suit === "♦" || suit === "♥" ? "red" : "black";
-  };
-
-  card.style.color = colorSelect(suit);
+  cardsDeck.pop();
+  return cardsDeck;
 };
 
+let newDeck = getDeck();
+
 window.onload = function() {
-  const newDeck = getDeck();
   shuffleCards(newDeck);
   renderCard(newDeck);
 };
+
+getCardButton.addEventListener("click", () => {
+  renderCard(newDeck);
+});
+
+shuffleCardButton.addEventListener("click", () => {
+  newDeck = getDeck();
+  shuffleCards(newDeck);
+  renderCard(newDeck);
+});
