@@ -21,16 +21,20 @@
   </head>
   <body>
     <div class="container-fluid bg-success min-vh-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class=" col-lg-3 col-md-5 col-9">
+      <div
+        class="row vh-100 d-flex justify-content-center align-content-center"
+      >
+        <div
+          class="col-auto col-md-auto col-lg-auto d-flex flex-column justify-content-center align-items-center"
+        >
           <h1 class="text-light text-center my-3" id="title">Card Generator</h1>
-          <div class="bg-light card card-size my-2">
-            <div id="card" class="cardbody p-3"></div>
+          <div class="card card-size w-100 my-2">
+            <div id="card" class="cardbody bg-light  p-3"></div>
           </div>
-          <button class="btn bg-light w-100" id="get-card">
+          <button class="btn bg-light btn-lg btn-lg w-100" id="get-card">
             Get new card
           </button>
-          <button class="btn bg-light w-100 my-2" id="shuffle-card">
+          <button class="btn bg-light btn-lg my-2 w-100" id="shuffle-card">
             Shuffle the deck!
           </button>
         </div>

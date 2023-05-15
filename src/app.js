@@ -49,7 +49,7 @@ const renderCard = cardsDeck => {
 
   suitElement.className = "text-left h3 pb-4";
   valueElement.className = "text-center h1 py-5";
-  invertedSuitElement.className = "text-right h3 pt-4";
+  invertedSuitElement.className = "text-right h3 pb-4";
   invertedSuitElement.style.transform = "rotate(180deg)";
 
   card.innerHTML = "";
@@ -63,9 +63,9 @@ const renderCard = cardsDeck => {
     card.style.color = suit === "♦" || suit === "♥" ? "red" : "black";
   } else {
     title.textContent = "There're no cards left";
-    suitElement.textContent = "🤡";
+    suitElement.textContent = "★";
     valueElement.textContent = "🤡";
-    invertedSuitElement.textContent = "🤡";
+    invertedSuitElement.textContent = "★";
   }
 
   card.append(suitElement);
