@@ -52,7 +52,9 @@ const renderCard = cardsDeck => {
   invertedSuitElement.className = "text-right h3 pb-4";
   invertedSuitElement.style.transform = "rotate(180deg)";
 
-  card.innerHTML = "";
+  while (card.hasChildNodes()) {
+    card.removeChild(card.firstChild);
+  }
 
   if (cardsDeck.length !== 0) {
     title.textContent = "This is your card";
