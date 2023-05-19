@@ -62,7 +62,10 @@ const renderCard = cardsDeck => {
     suitElement.textContent = suit;
     valueElement.textContent = value;
     invertedSuitElement.textContent = suit;
-    card.style.color = suit === "♦" || suit === "♥" ? "red" : "black";
+    card.classList.remove("text-danger", "text-dark");
+    suit === "♦" || suit === "♥"
+      ? card.classList.add("text-danger")
+      : card.classList.add("text-dark");
   } else {
     title.textContent = "There're no cards left";
     suitElement.textContent = "★";
