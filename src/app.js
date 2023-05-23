@@ -2,6 +2,19 @@
 const getCardButton = document.getElementById("get-card");
 const shuffleCardButton = document.getElementById("shuffle-card");
 const title = document.querySelector("h1");
+const card = document.getElementById("card");
+const suitElement = document.createElement("p");
+const valueElement = document.createElement("p");
+const invertedSuitElement = document.createElement("p");
+
+suitElement.className = "text-left h3 pb-4";
+valueElement.className = "text-center h1 py-5";
+invertedSuitElement.className = "text-right h3 pb-4";
+invertedSuitElement.style.transform = "rotate(180deg)";
+
+card.append(suitElement);
+card.append(valueElement);
+card.append(invertedSuitElement);
 
 const getDeck = () => {
   const cardSuits = ["♦", "♥", "♠", "♣"];
@@ -42,43 +55,23 @@ const shuffleCards = cardsDeck => {
 };
 
 const renderCard = cardsDeck => {
-  const card = document.getElementById("card");
-  const suitElement = document.createElement("p");
-  const valueElement = document.createElement("p");
-  const invertedSuitElement = document.createElement("p");
-
-  suitElement.className = "text-left h3 pb-4";
-  valueElement.className = "text-center h1 py-5";
-  invertedSuitElement.className = "text-right h3 pb-4";
-  invertedSuitElement.style.transform = "rotate(180deg)";
-
-  while (card.hasChildNodes()) {
-    card.removeChild(card.firstChild);
-  }
-
-  if (cardsDeck.length !== 0) {
-    title.textContent = "This is your card";
-    const { suit, value } = cardsDeck[cardsDeck.length - 1];
-    suitElement.textContent = suit;
-    valueElement.textContent = value;
-    invertedSuitElement.textContent = suit;
-    card.classList.remove("text-danger", "text-dark");
-    suit === "♦" || suit === "♥"
-      ? card.classList.add("text-danger")
-      : card.classList.add("text-dark");
-  } else {
+  if (cardsDeck.length === 0) {
     title.textContent = "There're no cards left";
     suitElement.textContent = "★";
     valueElement.textContent = "🤡";
     invertedSuitElement.textContent = "★";
+    return;
   }
 
-  card.append(suitElement);
-  card.append(valueElement);
-  card.append(invertedSuitElement);
-
-  cardsDeck.pop();
-  return cardsDeck;
+  title.textContent = "This is your card";
+  const { suit, value } = cardsDeck.pop();
+  suitElement.textContent = suit;
+  valueElement.textContent = value;
+  invertedSuitElement.textContent = suit;
+  card.classList.remove("text-danger", "text-dark");
+  suit === "♦" || suit === "♥"
+    ? card.classList.add("text-danger")
+    : card.classList.add("text-dark");
 };
 
 let newDeck = getDeck();
